@@ -206,15 +206,7 @@ int WINAPI WinMain
 			DispatchMessage(&msg);			//分发一个消息给窗口程序。
 		}
 		//else
-		{
-			//Sleep(10);
-			TimeNow = GetTickCount();   //获取当前系统时间
-			if(TimeNow-TimePre>=200)        //重绘
-			{
-				InvalidateRect(hWnd, NULL, true);  //背景重绘
-				Game_Paint(hWnd);
-			}
-		}
+		
 
 		if(GameBoard.Victory()==WINRED)
 		{
@@ -362,6 +354,13 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 		case VK_F5:
 			MessageBox(NULL,ABOUTME,_T("关于"),MB_OK);
 			break;
+		}
+		{
+		//Sleep(10);
+		{
+			InvalidateRect(hwnd, NULL, true);  //背景重绘
+			Game_Paint(hwnd);
+		}
 		}
 		break;
 
