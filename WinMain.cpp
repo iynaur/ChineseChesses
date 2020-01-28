@@ -192,20 +192,22 @@ int WINAPI WinMain
 		return FALSE;
 	}
 	//循环播放背景音乐 
-	PlaySound(_T("鸟之诗.wav"),NULL,SND_FILENAME|SND_ASYNC|SND_LOOP);
+	//PlaySound(_T("鸟之诗.wav"),NULL,SND_FILENAME|SND_ASYNC|SND_LOOP);
 
 	MessageBox(NULL,WRITEFORWARD,_T("写在前面"),MB_OK);
 
 	/*消息循环*/
 	while(msg.message!=WM_QUIT)		//使用while循环，如果消息不是WM_QUIT消息，就继续循环
 	{
-		if( PeekMessage(&msg,0,0,0,PM_REMOVE))   //查看应用程序消息队列，有消息时将队列中的消息派发出去。
+		if (GetMessage(&msg, 0, 0, 0/*,PM_REMOVE*/))
+		//if (PeekMessage(&msg,0,0,0,PM_REMOVE))   //查看应用程序消息队列，有消息时将队列中的消息派发出去。
 		{
 			TranslateMessage(&msg);		//将虚拟键消息转换为字符消息
 			DispatchMessage(&msg);			//分发一个消息给窗口程序。
 		}
-		else
+		//else
 		{
+			//Sleep(10);
 			TimeNow = GetTickCount();   //获取当前系统时间
 			if(TimeNow-TimePre>=200)        //重绘
 			{
